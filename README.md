@@ -1,79 +1,72 @@
 # IRC Client
 
-A simple IRC (Internet Relay Chat) client built in C++ using Windows Sockets (Winsock). This client allows users to connect to an IRC server, send messages, change nicknames, and join or leave channels.
+## Overview
+This project is a simple IRC (Internet Relay Chat) client built using C++ and Qt. It allows users to connect to an IRC server, send commands, and participate in chat rooms.
 
 ## Features
-- Connect to any IRC server
+- Connect to an IRC server
 - Send and receive messages
 - Join and leave channels
-- Change nickname dynamically
-- Gracefully handle server disconnects
+- Change nickname
+- Simple GUI using Qt
 
 ## Requirements
-- Windows OS
-- Visual Studio or any C++ compiler supporting Winsock
+### Dependencies
+- Qt (QtWidgets, QtNetwork)
+- C++17 or later
 
-## Installation & Compilation
+### Platform Support
+- Windows (using Winsock2)
+- Linux/macOS (using POSIX sockets)
 
-### **Using Visual Studio**
-1. Open Visual Studio and create a new **Console Application**.
-2. Copy and paste the source code into `main.cpp`.
-3. Link with `Ws2_32.lib` (already handled by `#pragma comment(lib, "Ws2_32.lib")`).
-4. Build and run the application.
-
-### **Using g++ (MinGW on Windows)**
-If you're using MinGW, you can compile it using:
-```sh
- g++ -o irc_client irc_client.cpp -lws2_32
-```
+## Installation and Setup
+1. **Install Qt:** Ensure Qt is installed on your system.
+2. **Clone the Repository:**
+   ```sh
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
+3. **Compile the Project:**
+   ```sh
+   qmake && make   # For Linux/macOS
+   mingw32-make    # For Windows (using MinGW)
+   ```
+4. **Run the Executable:**
+   ```sh
+   ./IRCClient    # Linux/macOS
+   IRCClient.exe  # Windows
+   ```
 
 ## Usage
+1. Launch the application.
+2. Enter the IRC server, port (default: 6667), and nickname.
+3. Use commands in the input field:
+   - `JOIN #channel` - Join a channel
+   - `PART #channel` - Leave a channel
+   - `NICK newname` - Change nickname
+   - `MSG #channel message` - Send a message to a channel
+   - `QUIT` - Disconnect from the server
 
-1. Run the executable:
-   ```sh
-   ./irc_client.exe
-   ```
-2. Enter the IRC server address.
-3. Enter the port (default is `6667`).
-4. Enter a nickname.
-5. Use the available commands:
-   - `JOIN #channel` → Join an IRC channel.
-   - `NICK newnick` → Change your nickname.
-   - `MSG #channel message` → Send a message to a channel.
-   - `PART #channel` → Leave a channel.
-   - `QUIT` → Disconnect from the server.
+## Known Issues
+- The application currently does not support SSL connections.
+- Error handling can be improved for various socket failures.
 
-## Example Session
-```
-Enter IRC server: irc.freenode.net
-Enter port (default 6667): 6667
-Enter nickname: MyNick
-Commands: JOIN #channel, NICK newnick, MSG #channel message, PART #channel, QUIT
-> JOIN #general
-> MSG #general Hello everyone!
-> NICK NewNick
-> QUIT
-```
+## Future Enhancements
+- Support for more IRC commands
+- Improve UI/UX with better message formatting
+- Add configuration options for user settings
+- Implement channel user list display
 
-## How It Works
-- The client connects to an IRC server using **Winsock**.
-- A separate thread continuously listens for incoming messages from the server.
-- User input is processed and converted into IRC commands.
-- Messages are sent using `send()` and received using `recv()`.
-- Handles **PING** messages from the server by responding with **PONG**.
-
-## Future Improvements
-- Support for SSL/TLS connections.
-- Improved command parsing.
-- GUI version of the client.
+## Contributing
+Feel free to submit pull requests or report issues.
 
 ## License
 This project is licensed under the MIT License.
 
-## Contributions
-Contributions are welcome! Feel free to fork and submit pull requests.
-
 ---
-**Author:** [adityarawat1223]  
+**Author:** adityarawat1223 AKA burstingfire355
+
+
+
 
 
